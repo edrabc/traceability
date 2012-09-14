@@ -32,10 +32,35 @@ Depending on the desired behaviour, the Transaction ID could be traced from seve
 - HTTP Header: if every request includes an special header with a unique session or transaction ID, add the following configuration to your context file:
 
 ```xml
-<bean class="traceability.logback.spring.mvc.HttpHeaderSpringInterceptor">
-    <property name="headerName" value="x-transaction" />
-    <property name="mdcKey" value="x-transaction" />
-</bean>
+<filter>
+    <filter-name>Logback MDC Filter</filter-name>
+    <filter-class>traceability.logback.filter.HttpHeaderServletFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>Logback MDC Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
+
+**Note**: By default, the Transaction ID is injected into the MDC with the key `transaction` and the expected HTTP header name is `x-transaction`. In order to change this default behaviour, configure the filter with init-params `mdc_key` and `header_name`:
+
+```xml
+<filter>
+    <filter-name>Logback MDC Filter</filter-name>
+    <filter-class>traceability.logback.filter.HttpHeaderServletFilter</filter-class>
+    <init-param>
+        <param-name>header_name</param-name>
+        <param-value>x-my-transaction-header</param-value>
+    </init-param>
+    <init-param>
+        <param-name>mdc_key</param-name>
+        <param-value>my_own_logback_key</param-value>
+    </init-param>
+</filter>
+<filter-mapping>
+    <filter-name>Logback MDC Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
 ```
 
 - Authorized User: if every request requires an authorization step, just add the following configuration to the **web.xml** file, so the username is automatically injected in the MDC:

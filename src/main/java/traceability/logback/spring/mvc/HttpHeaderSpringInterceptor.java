@@ -18,7 +18,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * {@code
  * <bean class="traceability.logback.spring.mvc.HttpHeaderSpringInterceptor">
  *     <property name="headerName" value="x-transaction" />
- *     <property name="mdcKey" value="x-transaction" />
+ *     <property name="mdcKey" value="transaction" />
  * </bean>
  * }
  * </pre>
