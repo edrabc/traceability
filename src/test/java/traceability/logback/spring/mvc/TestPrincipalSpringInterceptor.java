@@ -52,6 +52,17 @@ public class TestPrincipalSpringInterceptor {
     }
 
     @Test
+    public void testPreHandle_ShouldSetAnonymousTagIfPrincipalIsEmpty() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setUserPrincipal(new DummyPrincipal(""));
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        boolean result = interceptor.preHandle(request, response, new Object());
+        assertTrue(result);
+        assertEquals("anonymous", MDC.get("transaction"));
+    }
+
+    @Test
     public void testPreHandle_ShouldUserAlternateTransactionKeyIfConfigured() {
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.setUserPrincipal(new DummyPrincipal("user1"));

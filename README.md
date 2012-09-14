@@ -94,7 +94,7 @@ Depending on the desired behaviour, the Transaction ID could be traced from seve
 ```xml
 <bean class="traceability.logback.spring.mvc.HttpHeaderSpringInterceptor">
     <property name="headerName" value="x-transaction" />
-    <property name="mdcKey" value="x-transaction" />
+    <property name="mdcKey" value="transaction" />
 </bean>
 ```
 

@@ -19,6 +19,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.MDC;
 
+/**
+ * Unit test for {@link TraceableHeaderSoapInterceptor}.
+ */
 public class TestTraceableHeaderSoapInterceptor {
 
     private TraceableHeaderSoapInterceptor interceptor;

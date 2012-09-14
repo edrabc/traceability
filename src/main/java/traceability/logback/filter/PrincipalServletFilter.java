@@ -54,13 +54,13 @@ import org.slf4j.MDC;
  * </pre>
  * 
  * <p>
- * Finally, configure your <code>logback.xml</code> file with the configured <b>mcd_key</b>:
+ * Finally, configure your <code>logback.xml</code> file with the default <b>mcd_key</b>:
  * 
  * <pre>
  * &lt;configuration ...&gt;
  *     &lt;appender name=...&gt;
  *         &lt;encoder&gt;
- *             &lt;pattern&gt;%X{username} %level...&lt;/pattern&gt;
+ *             &lt;pattern&gt;%X{transaction} %level...&lt;/pattern&gt;
  *         &lt;/encoder&gt;
  *     &lt;/appender&gt;
  *     ...

@@ -7,8 +7,8 @@ import org.slf4j.MDC;
 import org.springframework.jms.core.MessagePostProcessor;
 
 /**
- * A thread-safe Spring JMS {@link MessagePostProcessor}, that reads a transaction fiend from the Mapped Diagnostic
- * Context ( {@link MDC}) of the request and injects it in the {@link Message} headers.
+ * A thread-safe Spring JMS {@link MessagePostProcessor}, that reads a transaction field from the Mapped Diagnostic
+ * Context ({@link MDC}) of the request and injects it in the {@link Message} headers.
  * 
  * <p>
  * In order to use the post-processor, inject an instance of this class in the <code>JmsTemplate</code>:

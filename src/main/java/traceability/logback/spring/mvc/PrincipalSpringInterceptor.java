@@ -24,9 +24,19 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * }
  * </pre>
  * 
+ * If using Spring MVC namespace support:
+ * 
+ * <pre>
+ * {@code
+ * <mvc:interceptors>
+ *     <bean class="traceability.logback.spring.mvc.PrincipalSpringInterceptor" />
+ * </mvc:interceptors>
+ * }
+ * </pre>
+ * 
  * <p>
- * Finally, configure your <code>logback.xml</code> file with the configured <b>mdcKey</b> (or <b>%X{transaction}</b>
- * by default):
+ * Finally, configure your <code>logback.xml</code> file with the configured <b>mdcKey</b> (or <b>%X{transaction}</b> by
+ * default):
  * 
  * <pre>
  * &lt;configuration ...&gt;
@@ -56,8 +66,11 @@ public class PrincipalSpringInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        String username = ANONYMOUS;
         Principal principal = request.getUserPrincipal();
-        String username = (principal != null) ? principal.getName() : ANONYMOUS;
+        if (principal != null && principal.getName().length() > 0) {
+            username = principal.getName();
+        }
 
         MDC.put(mdcKey, username);
 
