@@ -11,6 +11,8 @@
 
     <properties>
         <org.springframework-version>3.1.1.RELEASE</org.springframework-version>
+        <org.apache.cxf-version>2.2.12</org.apache.cxf-version>
+
         <spring.security.version>3.1.2.RELEASE</spring.security.version>
         <org.slf4j-version>1.6.4</org.slf4j-version>
 
@@ -83,6 +85,15 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
             <version>${org.springframework-version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- CXF Interceptors -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-bindings-soap</artifactId>
+            <version>${org.apache.cxf-version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
