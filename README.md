@@ -25,7 +25,48 @@ In order to use traceability module feature, **pick your poison** and follow the
 
 ### Servlet Filter + Logback MDC
 
-TODO
+Traceability module supports a Servlet Filter configuration, so every request is parsed and the transaction is injected into the Logback MDC.
+
+Depending on the desired behaviour, the Transaction ID could be traced from several sources:
+
+- HTTP Header: if every request includes an special header with a unique session or transaction ID, add the following configuration to your context file:
+
+```xml
+<bean class="traceability.logback.spring.mvc.HttpHeaderSpringInterceptor">
+    <property name="headerName" value="x-transaction" />
+    <property name="mdcKey" value="x-transaction" />
+</bean>
+```
+
+- Authorized User: if every request requires an authorization step, just add the following configuration to the **web.xml** file, so the username is automatically injected in the MDC:
+
+```xml
+<filter>
+    <filter-name>Logback MDC Filter</filter-name>
+    <filter-class>traceability.logback.filter.PrincipalServletFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>Logback MDC Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
+
+**Note**: By default, the Transaction ID is injected into the MDC with the key `transaction`. In order to change this default behaviour, configure the filter with an init-param `mdc_key`:
+
+```xml
+<filter>
+    <filter-name>Logback MDC Filter</filter-name>
+    <filter-class>traceability.logback.filter.PrincipalServletFilter</filter-class>
+    <init-param>
+        <param-name>mdc_key</param-name>
+        <param-value>my_own_logback_key</param-value>
+    </init-param>
+</filter>
+<filter-mapping>
+    <filter-name>Logback MDC Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
 
 ### Spring MVC + Logback MDC
 
