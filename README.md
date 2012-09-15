@@ -1,4 +1,4 @@
-# traceability
+# traceability [![Build Status](https://secure.travis-ci.org/edrabc/traceability.png)](http://secure.travis-ci.org/edrabc/traceability)
 
 ## Introduction
 
