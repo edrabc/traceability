@@ -21,7 +21,17 @@ TODO
 
 ## Usage
 
-In order to use traceability module feature, **pick your poison** and follow the instructions:
+In order to use traceability module feature, add the **traceability** dependency to the pom.xml of your project:
+
+```xml
+<dependency>
+    <groupId>traceability</groupId>
+    <artifactId>traceability</artifactId>
+    <version>${traceability-version}</version>
+</dependency>
+```
+
+Once added, **pick your poison** and follow the instructions:
 
 ### Servlet Filter + Logback MDC
 
@@ -29,7 +39,7 @@ Traceability module supports a Servlet Filter configuration, so every request is
 
 Depending on the desired behaviour, the Transaction ID could be traced from several sources:
 
-- HTTP Header: if every request includes an special header with a unique session or transaction ID, add the following configuration to your context file:
+- **HTTP Header**: if every request includes an special header with a unique session or transaction ID, add the following configuration to your context file:
 
 ```xml
 <filter>
@@ -63,7 +73,7 @@ Depending on the desired behaviour, the Transaction ID could be traced from seve
 </filter-mapping>
 ```
 
-- Authorized User: if every request requires an authorization step, just add the following configuration to the **web.xml** file, so the username is automatically injected in the MDC:
+- **Authorized User**: if every request requires an authorization step, just add the following configuration to the **web.xml** file, so the username is automatically injected in the MDC:
 
 ```xml
 <filter>
@@ -114,7 +124,7 @@ If you prefer to use Spring MVC interceptors to set the Transaction ID, first of
 
 Depending on the desired behaviour, the Transaction ID could be traced from several sources:
 
-- HTTP Header: if every request includes an special header with a unique session or transaction ID, add the following configuration to your context file:
+- **HTTP Header**: if every request includes an special header with a unique session or transaction ID, add the following configuration to your context file:
 
 ```xml
 <bean class="traceability.logback.spring.mvc.HttpHeaderSpringInterceptor">
@@ -123,7 +133,7 @@ Depending on the desired behaviour, the Transaction ID could be traced from seve
 </bean>
 ```
 
-- Authorized User: if every request requires a previous authorization step, simply add the following configuration to your context file, so the username is automatically injected in the MDC:
+- **Authorized User**: if every request requires a previous authorization step, simply add the following configuration to your context file, so the username is automatically injected in the MDC:
 
 ```xml
 <bean class="traceability.logback.spring.mvc.PrincipalSpringInterceptor">
