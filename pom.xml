@@ -20,6 +20,7 @@
         <compiler.debug>false</compiler.debug>
         <compiler.optimize>true</compiler.optimize>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <server.ci>http://ci-mvnos.hi.inet</server.ci>
     </properties>
 
     <dependencies>
@@ -231,6 +232,17 @@
         <developerConnection>scm:git:git@github.com:edrabc/traceability.git</developerConnection>
         <url>https://github.com/edrabc/traceability</url>
     </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <url>${server.ci}/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>${server.ci}/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <issueManagement>
         <system>github</system>
